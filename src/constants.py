@@ -1,0 +1,4 @@
+NUMBER_OF_PERSONS = 10
+DATE_FORMAT = "%Y-%m-%d-%H%M%S"
+
+INDATA_DIRECTORY = "indata"
