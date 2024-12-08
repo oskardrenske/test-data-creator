@@ -13,6 +13,7 @@ from src.utils import (
     create_dir,
     old_date,
     number_of_persons,
+    pretty_print,
 )
 
 
@@ -39,14 +40,14 @@ class TestDataCreator:
         with jsonlines.open(self.output_full_path, mode="a") as f:
             f.write(person)
 
-    def get_unique_personnummer(self) -> tuple:
+    def get_unique_personnummer(self) -> dict:
         pnr_left_in_list = len(self.personnummer)
         if pnr_left_in_list == 0:
             logger.warning("No personnummer left")
-            return "0", False
+            return {"personnummer": 0, "remaining": False}
         pnr = get_random_from_list(self.personnummer)
         self.personnummer.remove(pnr)
-        return pnr, True
+        return {"personnummer": pnr, "remaining": True}
 
     def create_person(self, person_nr):
         return {
@@ -65,11 +66,12 @@ class TestDataCreator:
         logger.info(f"Create test data for {self.number_of_persons} persons")
         total = 0
         for i in range(self.number_of_persons):
-            personnummer, pnr_left = self.get_unique_personnummer()
-            if not pnr_left:
+            result = self.get_unique_personnummer()
+            if not result["remaining"]:
                 break
 
-            person = self.create_person(personnummer)
+            person = self.create_person(result["personnummer"])
             self.write_person_to_file(person)
+            pretty_print(person)
             total += 1
         logger.info(f"Wrote test data for {total} persons to '{self.output_full_path}'")
