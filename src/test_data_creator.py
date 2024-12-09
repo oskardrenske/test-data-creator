@@ -32,6 +32,10 @@ class TestDataCreator:
         self.number_of_persons = number_of_persons()
 
     def create_addresses(self) -> list:
+        """
+        Combine address rpefix with address suffix
+        Some suffixes are more common and have several entries in the text file
+        """
         address_prefix = load_data_from_file("address_prefix.txt")
         address_suffix = load_data_from_file("address_suffix.txt")
         return combine_prefix_suffix(prefixes=address_prefix, suffixes=address_suffix)
