@@ -91,8 +91,13 @@ gatunummer kan vara högre än vad jag lagt in i funktionen. Kan din applikation
 
 ## Unikhet
 personnummer är unika för varje körning  
-All annan data skulle kunna bli duplicerad i flera testpersoner. Att varje mobiltelefon/epostadress hör till en person är bara en konvention och om det inte används för inloggning är det ett bra edge case att testa.
+All annan data skulle kunna bli duplicerad i flera testpersoner. Att varje mobiltelefon/epostadress hör till en och endast en person är bara en konvention, och om det inte används för inloggning är det ett bra edge case att testa.
 
 ### Formattering och linting
 Gjord med `ruff format`respektive `ruff check`
+
+# Andra testdata-generatorer
+[Faker](https://faker.readthedocs.io/en/master/). Finns för några olika programmeringsspråk. Men det skapar syntaktiskt korrekta personnummer som kan vara riktiga personnummer. Jag såg att de använder prefix-suffix för adresser, att ha högre sannolikhet för "vägen" och "gatan" än övriga prefix är en bra idé, den implementerade jag på enklaste sätt. Att ha olika sannolikhet för olika namn är en intressant detalj.
+
+En fördel med att ha egen testdata i textfiler är att det är lätt att uppdatera. Med Faker finns rådatan i Python-filer. 
 
