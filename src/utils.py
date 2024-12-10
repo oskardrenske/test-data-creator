@@ -28,10 +28,10 @@ def random_true_false() -> bool:
     """
     Returns True or False randomly
     """
-    return random.choice([True, False])
+    return get_random_from_list([True, False])
 
 
-def street_number():
+def street_number()->str:
     """
     returns a string of digits from 1 to 128
     """
@@ -39,7 +39,7 @@ def street_number():
 
 
 def get_random_from_list(list_of_things):
-    return random.sample(list_of_things, k=1)[0]
+    return random.choice(list_of_things)
 
 
 def timestamp():
@@ -102,7 +102,7 @@ def number_of_persons():
     if number_of_persons is not None and number_of_persons.isdigit() and int(number_of_persons) > 0:
         return int(number_of_persons)
     else:
-        logger.debug(
-            f"env var was {number_of_persons}, using default value {settings.NUMBER_OF_PERSONS}"
+        logger.warning(
+            f"env var NUMBER_OF_PERSONS was {number_of_persons}, using default value {settings.DEFAULT_NUMBER_OF_PERSONS}"
         )
         return settings.DEFAULT_NUMBER_OF_PERSONS
