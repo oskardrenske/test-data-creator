@@ -31,7 +31,7 @@ def random_true_false() -> bool:
     return get_random_from_list([True, False])
 
 
-def street_number()->str:
+def street_number() -> str:
     """
     returns a string of digits from 1 to 128
     """
